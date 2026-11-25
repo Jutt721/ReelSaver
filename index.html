@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReelSaver</title>
+<style>
+body {
+  margin:0;
+  background:#10121c;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+}
+header {
+  padding:22px;
+  background:#1d2030;
+  font-size:26px;
+  font-weight:bold;
+}
+h1 {margin-top:55px}
+.box {
+  max-width:400px;
+  margin:25px auto;
+  padding:22px;
+  background:#202437;
+  border-radius:15px;
+}
+input,button {
+  width:100%;
+  padding:14px;
+  margin-top:12px;
+  box-sizing:border-box;
+  border-radius:8px;
+}
+button {
+  background:#ff665c;
+  color:white;
+  border:0;
+  font-weight:bold;
+}
+p {color:#b8bdce}
+</style>
+</head>
+<body>
+<header>▶ ReelSaver</header>
+<h1>Save Your Videos</h1>
+<p>Your videos, your choice.</p>
+<div class="box">
+<h3>Upload Your Own Video</h3>
+<input type="file" id="file" accept="video/*">
+<button onclick="downloadVideo()">Download Video</button>
+<p id="msg">Select your original video first.</p>
+</div>
+<div class="box">
+<h3>TikTok & Instagram</h3>
+<input type="url" placeholder="Paste video link">
+<p>Authorized video downloading coming soon.</p>
+</div>
+<div class="box">
+<h3>Advertisement</h3>
+<p>Banner Ad Space</p>
+<p>Rewarded Ads Coming Soon</p>
+</div>
+<script>
+function downloadVideo(){
+ const f=document.getElementById('file').files[0];
+ if(!f){alert('Please select your video');return;}
+ const a=document.createElement('a');
+ const url=URL.createObjectURL(f);
+ a.href=url;
+ a.download=f.name;
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ document.getElementById('msg').innerText='Download started!';
+}
+</script>
+</body>
+</html>
